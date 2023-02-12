@@ -23,6 +23,8 @@ internal class Program
         builder.Services.AddTransient<IAccountRepositorie, AccountRepositorie>();
         builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
         builder.Services.AddTransient<IStoreRepository, StoreRepository>();
+        builder.Services.AddTransient<IProductRepository, ProductRepository>();
+        builder.Services.AddTransient<IInventoryRepository, InventoryRepository>();
         
 
        

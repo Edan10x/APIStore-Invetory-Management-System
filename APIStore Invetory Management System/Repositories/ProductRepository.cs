@@ -1,6 +1,8 @@
 ﻿using APIStore_Invetory_Management_System.Interface;
 using APIStore_Invetory_Management_System.Models;
+using Dapper;
 using System.Data.SqlClient;
+using System.Xml.Linq;
 
 namespace APIStore_Invetory_Management_System.Repositories
 {
@@ -14,25 +16,24 @@ namespace APIStore_Invetory_Management_System.Repositories
         }
 
 
-        public async Task<Account?> Get(string userName, string password)
+        public async Task<Product?> Get(int id)
         {
-            var accounts = await _connection.QueryAsync<Account>($"SELECT * FROM [Account] WHERE Password = '{password}' and  UserName = '{userName}';");
+            var products = await _connection.QueryAsync<Product>($"SELECT * FROM [dbo].[Product] WHERE id = {id};");
 
-            return accounts.FirstOrDefault();
+            return products.FirstOrDefault();
         }
 
-        public async Task<Account?> Create(string username, string password, int employeeId)
+        public async Task<Product?> Create(string name, int price)
         {
-            var accounts = await _connection.QueryAsync<Account>($"INSERT INTO [dbo].[Account] " +
-                                                                 $"VALUES ('{username}', '{password}', '{employeeId}');");
-            return accounts.FirstOrDefault();
+            var products = await _connection.QueryAsync<Product>($"INSERT INTO [dbo].[Product] VALUES ('{name}', '{price}');");
+            return products.FirstOrDefault();
         }
 
-        public async Task<Account?> Delete(int employeeId)
+        public async Task<Product?> Delete(int productId)
         {
-            var accounts = await _connection.QueryAsync($"DELETE FROM[Store_Invetory_Management].[dbo].[Employee]  WHERE Id = {employeeId};");
+            var products = await _connection.QueryAsync($"DELETE FROM[Store_Invetory_Management].[dbo].[Product]  WHERE Id = {productId};");
 
-            return accounts.FirstOrDefault();
+            return products.FirstOrDefault();
         }
     }
 }
