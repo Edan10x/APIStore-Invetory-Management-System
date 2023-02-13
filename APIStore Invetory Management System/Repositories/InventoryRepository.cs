@@ -1,5 +1,6 @@
 ﻿using APIStore_Invetory_Management_System.Interface;
 using APIStore_Invetory_Management_System.Models;
+using APIStore_Invetory_Management_System.Request;
 using Dapper;
 using System.Data.SqlClient;
 
@@ -16,9 +17,12 @@ namespace APIStore_Invetory_Management_System.Repositories
         }
 
 
-        public async Task<Inventory?> Get(int id)
+        public async Task<InventoryResponse?> Get(int id)
         {
-            var inventory = await _connection.QueryAsync<Inventory>($"SELECT * FROM [dbo].[Inventory] WHERE ProductId = {id};");
+            var inventory = await _connection.QueryAsync<InventoryResponse>($"SELECT name, Quantity, price, aisle, StoreLocation FROM Inventory " +
+                                                                    $"inner join Product on ProductId = Product.id " +
+                                                                    $"inner join Store on StoreId = Store.id " +
+                                                                    $"WHERE [Inventory].ProductId = {id}");
 
             return inventory.FirstOrDefault();
         }

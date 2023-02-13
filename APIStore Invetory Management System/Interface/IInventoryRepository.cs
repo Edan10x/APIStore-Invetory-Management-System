@@ -1,4 +1,5 @@
 ﻿using APIStore_Invetory_Management_System.Models;
+using APIStore_Invetory_Management_System.Request;
 
 namespace APIStore_Invetory_Management_System.Interface
 {
@@ -7,6 +8,6 @@ namespace APIStore_Invetory_Management_System.Interface
         Task<Inventory?> Create(int quantity, string aisle, int storeId, int productid);
 
         Task<Inventory?> Delete(int productId);
-        Task<Inventory?> Get(int id);
+        Task<InventoryResponse?> Get(int id);
     }
 }

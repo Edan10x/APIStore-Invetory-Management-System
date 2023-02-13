@@ -23,7 +23,7 @@ namespace APIStore_Invetory_Management_System.Repositories
             return products.FirstOrDefault();
         }
 
-        public async Task<Product?> Create(string name, int price)
+        public async Task<Product?> Create(string name, double price)
         {
             var products = await _connection.QueryAsync<Product>($"INSERT INTO [dbo].[Product] VALUES ('{name}', '{price}');");
             return products.FirstOrDefault();

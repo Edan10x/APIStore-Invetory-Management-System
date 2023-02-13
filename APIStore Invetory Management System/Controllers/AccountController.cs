@@ -11,9 +11,9 @@ namespace APIStore_Invetory_Management_System.Controllers
     [ApiController]
     public class AccountController : Controller
     {
-        private readonly IAccountRepositorie _repositorie;
+        private readonly IAccountRepository _repositorie;
        
-        public AccountController(IAccountRepositorie repositorie)
+        public AccountController(IAccountRepository repositorie)
         {
             _repositorie = repositorie;
         }
@@ -29,11 +29,18 @@ namespace APIStore_Invetory_Management_System.Controllers
         public async Task<IActionResult?> Create([FromBody] CreateAccountRequest request)
         {
 
-            await _repositorie.Create(request.Username, request.Password, request.EmployeeId);
+            var account = await _repositorie.Create(request.Username, request.Password, request.EmployeeId);
             return Ok();
         }
 
-       
+        [HttpDelete(Name = "DeleteAccount")]
+        public async Task<IActionResult?> Delete(int employeeId)
+        {
+            var account  = await _repositorie.Delete(employeeId);
+            return Ok();
+        }
+
+
 
     }
 }

@@ -20,7 +20,7 @@ internal class Program
 
         //repository
         //will register the class to the frame work for every class that we want to inject to the constructer
-        builder.Services.AddTransient<IAccountRepositorie, AccountRepositorie>();
+        builder.Services.AddTransient<IAccountRepository, AccountRepositorie>();
         builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
         builder.Services.AddTransient<IStoreRepository, StoreRepository>();
         builder.Services.AddTransient<IProductRepository, ProductRepository>();

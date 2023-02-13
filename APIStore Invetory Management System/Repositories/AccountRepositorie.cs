@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace APIStore_Invetory_Management_System.Repositories
 {
-    public class AccountRepositorie : IAccountRepositorie
+    public class AccountRepositorie : IAccountRepository
     {
         private readonly SqlConnection _connection;
 
@@ -32,7 +32,7 @@ namespace APIStore_Invetory_Management_System.Repositories
 
         public async Task<Account?> Delete(int employeeId)
         {
-            var accounts = await _connection.QueryAsync($"DELETE FROM[Store_Invetory_Management].[dbo].[Employee]  WHERE Id = {employeeId};");
+            var accounts = await _connection.QueryAsync($"DELETE FROM[Store_Invetory_Management].[dbo].[Account] WHERE EmployeeId = {employeeId};");
 
             return accounts.FirstOrDefault();
         }

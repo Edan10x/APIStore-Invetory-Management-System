@@ -17,7 +17,7 @@ namespace APIStore_Invetory_Management_System.Controllers
         }
 
         [HttpGet(Name = "GetInventory")]
-        public async Task<Inventory?> Get(int id)
+        public async Task<InventoryResponse?> Get(int id)
         {
             var inventory = await _repositorie.Get(id);
             return inventory;
@@ -32,7 +32,7 @@ namespace APIStore_Invetory_Management_System.Controllers
         }
 
         [HttpDelete(Name = "DeleteInventory")]
-        public async Task<IActionResult?> Delete([FromBody] int productId)
+        public async Task<IActionResult?> Delete(int productId)
         {
 
             var inventory = await _repositorie.Delete(productId);
